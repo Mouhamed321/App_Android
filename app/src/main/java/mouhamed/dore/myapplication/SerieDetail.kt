@@ -47,6 +47,7 @@ import mouhamed.dore.myapplication.FilmDetail
 import mouhamed.dore.myapplication.MainViewModel
 import mouhamed.dore.myapplication.SerieDetails
 
+
 @Composable
 fun SerieDetailScreen(serieDetail: SerieDetails, viewModel: MainViewModel, navController: NavController) {
     Column(
