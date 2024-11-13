@@ -63,7 +63,7 @@ fun SerieDetailScreen(serieDetail: SerieDetails, viewModel: MainViewModel, navCo
             contentDescription = serieDetail.name,
             modifier = Modifier
                 .fillMaxWidth()
-                .size(180.dp) // You can adjust the height as needed
+                .size(180.dp)
         )
         Text("")
         Row() {
@@ -93,7 +93,7 @@ fun SerieDetailScreen(serieDetail: SerieDetails, viewModel: MainViewModel, navCo
                         fontStyle = FontStyle.Italic,
                         modifier = Modifier.padding(8.dp),
                         overflow = TextOverflow.Ellipsis,
-                        maxLines = Int.MAX_VALUE // permet de pas couper les mots
+                        maxLines = Int.MAX_VALUE
                     )
 
                 }

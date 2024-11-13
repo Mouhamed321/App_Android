@@ -64,16 +64,13 @@ fun BottomAppBarExample(
         WindowWidthSizeClass.Compact -> {
             Scaffold(
                 topBar = {
-                    // TopAppBar avec le champ de recherche
                     TopAppBar(
                         title = {
                             if (searchVisible) {
-                                // Champ de texte pour la recherche
                                 TextField(
                                     value = searchQuery,
                                     onValueChange = {
                                         searchQuery = it
-                                        // Appeler votre fonction de recherche ici avec la query
                                         when (value) {
                                             "series" -> viewModel.searchSeries(searchQuery)
                                             "films" -> viewModel.searchMovies(searchQuery)
@@ -85,11 +82,9 @@ fun BottomAppBarExample(
                                 )
                             }
                         },
-                        // Icône loupe pour afficher le champ de recherche
                         actions = {
                             IconButton(onClick = {
                                 searchVisible = !searchVisible
-                                // Réinitialiser la recherche lorsque le champ est masqué
                                 if (!searchVisible) {
                                     searchQuery = ""
                                 }
@@ -107,14 +102,12 @@ fun BottomAppBarExample(
                         modifier = Modifier.fillMaxWidth(),
                         color = MaterialTheme.colorScheme.primary,
                     ) {
-                        // BottomAppBar avec les boutons
 
                         BottomAppBar(
                             contentPadding = PaddingValues(top = 1.dp, bottom = 1.dp),
                             contentColor = LocalContentColor.current
                         ) {
 
-                            // Bouton Films
                             Column(
                                 modifier = Modifier.weight(1f),
                                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -130,7 +123,6 @@ fun BottomAppBarExample(
                                 Text(text = "Films", color = Color.Black) // Texte blanc
                             }
 
-                            // Bouton Séries
                             Column(
                                 modifier = Modifier.weight(1f),
                                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -146,7 +138,6 @@ fun BottomAppBarExample(
                                 Text(text = "Séries", color = Color.Black)
                             }
 
-                            // Bouton Acteurs
                             Column(
                                 modifier = Modifier.weight(1f),
                                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -170,7 +161,6 @@ fun BottomAppBarExample(
                         .fillMaxSize()
                         .padding(innerPadding),
                 ) {
-                    // Contenu principal de votre écran
                     Column(
                         modifier = Modifier.fillMaxSize(),
                         verticalArrangement = Arrangement.Center,
@@ -190,7 +180,6 @@ fun BottomAppBarExample(
         else -> {
             var value by remember { mutableStateOf("films") }
 
-            // Barre latérale avec des boutons pour les catégories
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -200,7 +189,6 @@ fun BottomAppBarExample(
             ) {
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Bouton Films
                 IconButton(onClick = { value = "films" }) {
                     Image(
                         painter = painterResource(R.drawable.film),
@@ -212,7 +200,6 @@ fun BottomAppBarExample(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Bouton Séries
                 IconButton(onClick = { value = "series" }) {
                     Image(
                         painter = painterResource(R.drawable.serie),
@@ -225,7 +212,6 @@ fun BottomAppBarExample(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Bouton Acteurs
                 IconButton(onClick = { value = "acteurs" }) {
                     Image(
                         painter = painterResource(R.drawable.acteur),
@@ -236,7 +222,6 @@ fun BottomAppBarExample(
                 Text(text = "Acteurs", color = Color.Black)
             }
 
-            // Contenu principal de votre écran
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -251,7 +236,6 @@ fun BottomAppBarExample(
                     else -> Text(text = "Contenu inconnu")
                 }
             }
-            // Bouton en bas à droite
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -264,13 +248,11 @@ fun BottomAppBarExample(
                         .size(56.dp)
                         .background(Color.Gray, CircleShape)
                         .clickable {
-                            // Action lorsque le bouton rond est cliqué
                         },
                     contentAlignment = Alignment.Center
                 ) {
                     IconButton(onClick = {
                         searchVisible = !searchVisible
-                        // Réinitialiser la recherche lorsque le champ est masqué
                         if (!searchVisible) {
                             searchQuery = ""
                         }
@@ -291,12 +273,10 @@ fun BottomAppBarExample(
                 horizontalAlignment = Alignment.Start
             ) {
                 if (searchVisible) {
-                    // Champ de texte pour la recherche
                     TextField(
                         value = searchQuery,
                         onValueChange = {
                             searchQuery = it
-                            // Appeler votre fonction de recherche ici avec la query
                             when (value) {
                                 "series" -> viewModel.searchSeries(searchQuery)
                                 "films" -> viewModel.searchMovies(searchQuery)

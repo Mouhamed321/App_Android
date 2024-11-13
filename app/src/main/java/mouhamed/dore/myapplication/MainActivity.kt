@@ -51,60 +51,37 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Définit le contenu de l'activité avec Jetpack Compose
         setContent {
-            // Récupère la classe de taille de la fenêtre (WindowSizeClass)
             val windowSizeClass = calculateWindowSizeClass(this)
-
-            // Initialise le NavController pour gérer la navigation entre les écrans
             val navController = rememberNavController()
-
-            // Initialise le ViewModel pour gérer les données et la logique de l'application
             val viewModel: MainViewModel by viewModels()
 
-            // Définit le thème global de l'application
             MyApplicationTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    // Configurer la navigation avec Jetpack Compose Navigation
                     NavHost(
                         navController = navController,
-                        startDestination = "image"  // Écran de départ de l'application
+                        startDestination = "image"
                     ) {
-                        // Définit les écrans de l'application et leurs composants associés
                         composable("image") {
-                            // Affiche l'écran principal avec l'ensemble des films
                             Screen(windowSizeClass, navController)
                         }
                         composable("film") {
-                            // Affiche l'écran de liste des films
                             BottomAppBarExample(windowSizeClass, navController, viewModel)
                         }
                         composable("filmscreen") {
-                            // Affiche l'écran des films avec la grille ou la liste défilante
                             Film(windowSizeClass, navController, viewModel)
                         }
                         composable("seriescreen") {
-                            // Affiche l'écran des séries avec la grille ou la liste défilante
                             Serie(windowSizeClass, navController, viewModel)
                         }
                         composable("personscreen") {
-                            // Affiche l'écran des personnes avec la grille ou la liste défilante
                             Persons(windowSizeClass, navController, viewModel)
                         }
                         composable("filmDetail/{filmId}") { backStackEntry ->
-                            // Récupère l'ID du film de l'argument passé à partir du BackStackEntry
                             val filmId = backStackEntry.arguments?.getString("filmId")?.toIntOrNull()
-
-                            // Vérifie si l'ID du film est valide (non null)
                             if (filmId != null) {
-                                // Appelle la fonction pour récupérer les détails du film par son ID
                                 viewModel.filmDetailbyID(filmId)
-
-                                // Récupère l'état actuel des détails du film
                                 val filmDetail by viewModel.detailfilm.collectAsState()
-
-                                // Affiche l'écran de détails du film
                                 FilmDetailScreen(filmDetail, viewModel, navController)
                             }
                         }
@@ -141,7 +118,7 @@ class MainActivity : ComponentActivity() {
                     verticalArrangement = Arrangement.SpaceEvenly,
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(16.dp) // Ajoute des marges à l'intérieur du conteneur
+                        .padding(16.dp)
                 ) {
                     photoProfil()
                     Spacer(modifier = Modifier.height(16.dp))
@@ -159,16 +136,16 @@ class MainActivity : ComponentActivity() {
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(16.dp) // Ajoute des marges à l'intérieur du conteneur
+                        .padding(16.dp)
                 ) {
                     Column() {
                         photoProfil()
                     }
                     Column() {
                         Texte()
-                        Spacer(modifier = Modifier.height(16.dp)) // Ajoute un espace vertical
+                        Spacer(modifier = Modifier.height(16.dp))
                         Adresse()
-                        Spacer(modifier = Modifier.height(16.dp)) // Ajoute un espace vertical
+                        Spacer(modifier = Modifier.height(16.dp))
                         bouton(navController)
                     }
                 }
@@ -182,10 +159,10 @@ class MainActivity : ComponentActivity() {
             Image(
                 painter = painterResource(R.drawable.shifu),
                 contentDescription = "profil",
-                contentScale = ContentScale.Crop, // redimensionnement de l'image
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(250.dp)
-                    .clip(CircleShape) //cercle // taille l'espace disponible
+                    .clip(CircleShape)
             )
             Text(
                 text = "Mouhamed DORE",
@@ -244,7 +221,7 @@ class MainActivity : ComponentActivity() {
     fun bouton(navController: NavController) {
         androidx.compose.material3.Button(
             onClick = {
-                navController.navigate("film") // naviguer vers l'acceuil de l'appli (affichage des films par défault)
+                navController.navigate("film")
             }
         ) {
             Text(text = "Démarrer")

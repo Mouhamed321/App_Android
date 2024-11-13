@@ -51,12 +51,12 @@ fun FilmDetailScreen(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxSize()  // Occupe toute la taille disponible de l'écran
+            .fillMaxSize()
 
             .verticalScroll(
                 enabled = true,
                 state = rememberScrollState()
-            )  // Permet le défilement vertical
+            )
     ) {
 
 
@@ -68,10 +68,9 @@ fun FilmDetailScreen(
             contentDescription = filmDetail.title,
             modifier = Modifier
                 .fillMaxWidth()
-                .size(180.dp)  // Définit la taille de l'image
+                .size(180.dp)
         )
 
-        // Affiche une ligne vide pour l'espacement
         Text("")
 
         Row() {
@@ -83,7 +82,7 @@ fun FilmDetailScreen(
                     contentDescription = filmDetail.title,
                     modifier = Modifier
                         .size(180.dp)
-                        .align(Alignment.CenterHorizontally)  // Centre l'image horizontalement
+                        .align(Alignment.CenterHorizontally)
                 )
             }
             Column {
@@ -100,8 +99,7 @@ fun FilmDetailScreen(
                         maxLines = 1
                     )
                 }
-                // Affiche les genres du film
-                // joinToString = créer une chaîne de caractères à partir d'une liste en insérant une virgule suivie d'un espace entre chaque élément de la liste
+
                 Row {
                     Text(
                         text = "Genres: ${filmDetail.genres.joinToString(", ") { it.name }}",
@@ -116,7 +114,6 @@ fun FilmDetailScreen(
 
         Text(text = "Synopsis :", fontWeight = FontWeight.Bold, style = typography.h4)
 
-        // Affiche la description du film avec un alignement justifié
         Text(text = "${filmDetail.overview}", textAlign = TextAlign.Justify)
 
         Text(
@@ -126,7 +123,6 @@ fun FilmDetailScreen(
             modifier = Modifier.padding(8.dp)
         )
 
-        // Affiche une liste horizontale (LazyRow) des 10 premiers acteurs principaux du film
         LazyRow(
             contentPadding = PaddingValues(8.dp),
             modifier = Modifier.fillMaxWidth()
@@ -147,17 +143,16 @@ fun CastCard(actor: Cast, navController: NavController) {
             .fillMaxWidth()
             .padding(15.dp),
         onClick = {
-            // naviguer vers l'écran de détails de l'acteur
             navController.navigate("personDetail/${actor.id}")
         }
     ) {
-        // Colonnes alignées horizontalement au centre dans la carte
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(16.dp)  // Ajoute des marges à l'intérieur de la colonne
         )
         {
-            // Affiche l'image de l'acteur
+
             Image(
                 painter = rememberImagePainter(
                     data = "https://image.tmdb.org/t/p/w500${actor.profile_path}",
@@ -167,17 +162,16 @@ fun CastCard(actor: Cast, navController: NavController) {
                     .size(180.dp)
                     .align(Alignment.CenterHorizontally)
             )
-            // Affiche le nom de l'acteur
+
             Text(
                 text = actor.name,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
-                overflow = TextOverflow.Ellipsis,  // Affiche ... si le texte est trop long
-                maxLines = 1,  // Limite le texte à une seule ligne
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
                 modifier = Modifier
-                    .width(180.dp),  // Limite la largeur du texte à 180dp
+                    .width(180.dp),
             )
-            // Affiche le personnage joué par l'acteur
             Text(
                 text = actor.character
             )
