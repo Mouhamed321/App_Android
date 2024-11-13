@@ -251,7 +251,7 @@ fun BottomAppBarExample(
                     else -> Text(text = "Contenu inconnu")
                 }
             }
-            // Bouton rond en bas à droite
+            // Bouton en bas à droite
             Column(
                 modifier = Modifier
                     .fillMaxSize()
