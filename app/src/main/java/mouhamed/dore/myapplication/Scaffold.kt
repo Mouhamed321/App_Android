@@ -83,12 +83,9 @@ fun BottomAppBarExample(
                                     placeholder = { Text("Rechercher") },
                                     modifier = Modifier.fillMaxWidth()
                                 )
-                            } else {
-                                // Afficher le titre de l'application
-                                Text(text = "Fav'app")
                             }
                         },
-                        // Icône loupe pour afficher/masquer le champ de recherche
+                        // Icône loupe pour afficher le champ de recherche
                         actions = {
                             IconButton(onClick = {
                                 searchVisible = !searchVisible
@@ -206,7 +203,7 @@ fun BottomAppBarExample(
                 // Bouton Films
                 IconButton(onClick = { value = "films" }) {
                     Image(
-                        painter = painterResource(id = R.drawable.baseline_movie_24),
+                        painter = painterResource(R.drawable.film),
                         contentDescription = "Films",
                         modifier = Modifier.size(48.dp)
                     )
@@ -218,7 +215,7 @@ fun BottomAppBarExample(
                 // Bouton Séries
                 IconButton(onClick = { value = "series" }) {
                     Image(
-                        painter = painterResource(id = R.drawable.baseline_tv_24),
+                        painter = painterResource(R.drawable.serie),
                         contentDescription = "Séries",
                         modifier = Modifier.size(48.dp)
                     )
@@ -231,7 +228,7 @@ fun BottomAppBarExample(
                 // Bouton Acteurs
                 IconButton(onClick = { value = "acteurs" }) {
                     Image(
-                        painter = painterResource(id = R.drawable.baseline_person_24),
+                        painter = painterResource(R.drawable.acteur),
                         contentDescription = "Acteurs",
                         modifier = Modifier.size(48.dp)
                     )
