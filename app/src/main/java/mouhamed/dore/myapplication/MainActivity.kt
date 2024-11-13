@@ -1,7 +1,5 @@
 package mouhamed.dore.myapplication
 
-import BottomAppBarExample
-import SerieDetailScreen
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -44,6 +42,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import mouhamed.dore.myapplication.ui.theme.MyApplicationTheme
+import BottomAppBarExample
+import SerieDetailScreen
+
+
 
 
 class MainActivity : ComponentActivity() {
@@ -56,10 +58,12 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             val viewModel: MainViewModel by viewModels()
 
+
             MyApplicationTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     NavHost(
                         navController = navController,
+
                         startDestination = "image"
                     ) {
                         composable("image") {
@@ -71,6 +75,11 @@ class MainActivity : ComponentActivity() {
                         composable("filmscreen") {
                             Film(windowSizeClass, navController, viewModel)
                         }
+
+                        composable("NvelleDestination") {
+                            NewDestination(windowSizeClass, navController, viewModel)
+                        }
+
                         composable("seriescreen") {
                             Serie(windowSizeClass, navController, viewModel)
                         }
@@ -127,6 +136,7 @@ class MainActivity : ComponentActivity() {
                     Adresse()
                     Spacer(modifier = Modifier.height(16.dp))
                     bouton(navController)
+                    NvlleDestination(navController)
                 }
             }
 
@@ -227,6 +237,20 @@ class MainActivity : ComponentActivity() {
             Text(text = "Démarrer")
         }
     }
+
+    @Composable
+    fun NvlleDestination(navController: NavController){
+        androidx.compose.material3.Button(
+            onClick = {
+                navController.navigate("NewDestination")
+            }
+        ) {
+            Image(
+                painterResource (R.drawable.pouce) ,
+                contentDescription = "pouce")
+        }
+
+        }
 
 
 }
